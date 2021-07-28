@@ -1,14 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'messages/choice_message.dart';
 import 'messages/file_message.dart';
 import 'messages/image_message.dart';
+import 'messages/question_message.dart';
 import 'messages/text_message.dart';
 import 'messages/video_message.dart';
 import 'preview_data.dart' show PreviewData;
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType { file, image, text, video }
+enum MessageType { file, image, text, video, question, choice }
 
 /// Extension with one [toShortString] method
 extension MessageTypeToShortString on MessageType {
@@ -58,6 +60,10 @@ abstract class Message extends Equatable {
         return ImageMessage.fromJson(json);
       case 'text':
         return TextMessage.fromJson(json);
+      case 'question':
+        return QuestionMessage.fromJson(json);
+      case 'choice':
+        return ChoiceMessage.fromJson(json);
       default:
         throw ArgumentError('Unexpected value for message type');
     }

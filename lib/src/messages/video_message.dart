@@ -20,6 +20,7 @@ class VideoMessage extends Message {
     Status? status,
     int? updatedAt,
     required this.uri,
+    required this.thumbUri,
   }) : super(author, createdAt, id, metadata, roomId, status, MessageType.video,
             updatedAt);
 
@@ -36,6 +37,7 @@ class VideoMessage extends Message {
   })  : length = partialVideo.length,
         mimeType = partialVideo.mimeType,
         uri = partialVideo.uri,
+        thumbUri = partialVideo.thumbUri,
         super(author, createdAt, id, metadata, roomId, status,
             MessageType.video, updatedAt);
 
@@ -44,6 +46,7 @@ class VideoMessage extends Message {
       : length = Duration(milliseconds: json['length'] as int),
         mimeType = json['mimeType'] as String?,
         uri = json['uri'] as String,
+        thumbUri = json['thumbUri'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
           json['createdAt'] as int?,
@@ -69,6 +72,7 @@ class VideoMessage extends Message {
         'type': MessageType.video.toShortString(),
         'updatedAt': updatedAt,
         'uri': uri,
+        'thumbUri': thumbUri,
       };
 
   /// Creates a copy of the video message with an updated data
@@ -81,21 +85,21 @@ class VideoMessage extends Message {
     int? updatedAt,
   }) {
     return VideoMessage(
-      author: author,
-      createdAt: createdAt,
-      length: length,
-      id: id,
-      metadata: metadata == null
-          ? null
-          : {
-              ...this.metadata ?? {},
-              ...metadata,
-            },
-      mimeType: mimeType,
-      status: status ?? this.status,
-      updatedAt: updatedAt,
-      uri: uri,
-    );
+        author: author,
+        createdAt: createdAt,
+        length: length,
+        id: id,
+        metadata: metadata == null
+            ? null
+            : {
+                ...this.metadata ?? {},
+                ...metadata,
+              },
+        mimeType: mimeType,
+        status: status ?? this.status,
+        updatedAt: updatedAt,
+        uri: uri,
+        thumbUri: thumbUri);
   }
 
   /// Equatable props
@@ -109,6 +113,7 @@ class VideoMessage extends Message {
         status,
         updatedAt,
         uri,
+        thumbUri
       ];
 
   /// The length of the video
@@ -119,4 +124,7 @@ class VideoMessage extends Message {
 
   /// The video source (either a remote URL or a local resource)
   final String uri;
+
+  /// The preview video source (either a remote URL or a local resource)
+  final String thumbUri;
 }
