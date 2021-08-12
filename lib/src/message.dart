@@ -84,6 +84,7 @@ abstract class Message extends Equatable {
     Status? status,
     String? text,
     int? updatedAt,
+    String? roomId
   });
 
   /// Converts a particular message to the map representation, encodable to JSON.
