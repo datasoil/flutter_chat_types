@@ -83,6 +83,7 @@ class VideoMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    String? roomId
   }) {
     return VideoMessage(
         author: author,
