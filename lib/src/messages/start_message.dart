@@ -46,7 +46,7 @@ class StartMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.text,
+          MessageType.start,
           updatedAt,
         );
 
