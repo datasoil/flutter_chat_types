@@ -98,6 +98,7 @@ class TextMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    String? roomId
   }) {
     return TextMessage(
       author: author,

@@ -92,14 +92,15 @@ class QuestionMessage extends Message {
   /// metadata will overwite keys from the previous one.
   /// [status] with null value will be overwritten by the previous status.
   /// [updatedAt] with null value will nullify existing value.
-
+  @override
   Message copyWith({
     Map<String, dynamic>? metadata,
     PreviewData? previewData,
     Status? status,
+    List<Choice>? choices,
     String? text,
     int? updatedAt,
-    List<Choice>? choices,
+    String? roomId
   }) {
     return QuestionMessage(
       author: author,

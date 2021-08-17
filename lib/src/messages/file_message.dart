@@ -101,11 +101,12 @@ class FileMessage extends Message {
   /// [updatedAt] with null value will nullify existing value.
   @override
   Message copyWith({
-    Map<String, dynamic>? metadata,
+        Map<String, dynamic>? metadata,
     PreviewData? previewData,
     Status? status,
     String? text,
     int? updatedAt,
+    String? roomId
   }) {
     return FileMessage(
       author: author,

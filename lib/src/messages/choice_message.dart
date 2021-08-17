@@ -96,6 +96,7 @@ class ChoiceMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    String? roomId
   }) {
     return ChoiceMessage(
       author: author,
