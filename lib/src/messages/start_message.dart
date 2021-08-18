@@ -34,7 +34,6 @@ class StartMessage extends Message {
     int? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
-    required PartialText partialText,
     String? roomId,
     Status? status,
     int? updatedAt,
@@ -73,7 +72,7 @@ class StartMessage extends Message {
         'metadata': metadata,
         'roomId': roomId,
         'status': status?.toShortString(),
-        'type': MessageType.text.toShortString(),
+        'type': MessageType.start.toShortString(),
         'updatedAt': updatedAt,
       };
 
