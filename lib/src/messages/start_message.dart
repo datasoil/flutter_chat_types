@@ -24,7 +24,7 @@ class StartMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.text,
+          MessageType.start,
           updatedAt,
         );
 
@@ -60,7 +60,7 @@ class StartMessage extends Message {
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
-          MessageType.text,
+          MessageType.start,
           json['updatedAt'] as int?,
         );
 
