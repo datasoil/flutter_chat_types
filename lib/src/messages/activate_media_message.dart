@@ -54,7 +54,7 @@ class MediaActivationMessage extends Message {
 
   /// Creates a text message from a map (decoded JSON).
   MediaActivationMessage.fromJson(Map<String, dynamic> json)
-      : this.text = (json['text'] as String?), 
+      : text = json['text'] as String?, 
       super(
           User.fromJson(json['author'] as Map<String, dynamic>),
           json['createdAt'] as int?,
@@ -75,6 +75,7 @@ class MediaActivationMessage extends Message {
         'metadata': metadata,
         'roomId': roomId,
         'status': status?.toShortString(),
+        'text': text,
         'type': MessageType.media_activation.toShortString(),
         'updatedAt': updatedAt,
       };
