@@ -12,7 +12,7 @@ import 'preview_data.dart' show PreviewData;
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType { file, image, text, video, question, choice, start, media_activation }
+enum MessageType { file, image, text, video, question, choice, start, media_activation, media_deactivation }
 
 /// Extension with one [toShortString] method
 extension MessageTypeToShortString on MessageType {
@@ -70,6 +70,8 @@ abstract class Message extends Equatable {
         return StartMessage.fromJson(json);
       case 'media_activation':
         return MediaActivationMessage.fromJson(json);
+      case 'media_deactivation': 
+        return MediaDeactivationMessage.fromJson(json);
       default: 
         throw ArgumentError('Unexpected value for message type');
     }
