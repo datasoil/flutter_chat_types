@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:meta/meta.dart';
 import 'messages/start_message.dart';
 import 'messages/choice_message.dart';
@@ -11,7 +12,7 @@ import 'preview_data.dart' show PreviewData;
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType { file, image, text, video, question, choice, start }
+enum MessageType { file, image, text, video, question, choice, start, media_activation }
 
 /// Extension with one [toShortString] method
 extension MessageTypeToShortString on MessageType {
@@ -67,7 +68,9 @@ abstract class Message extends Equatable {
         return ChoiceMessage.fromJson(json);
       case 'start':
         return StartMessage.fromJson(json);
-      default:
+      case 'media_activation':
+        return MediaActivationMessage.fromJson(json);
+      default: 
         throw ArgumentError('Unexpected value for message type');
     }
   }
