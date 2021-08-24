@@ -9,15 +9,18 @@ import 'partial_text.dart';
 @immutable
 class StartMessage extends Message {
   /// Creates a text message.
-  const StartMessage({
-    required User author,
-    int? createdAt,
-    required String id,
-    Map<String, dynamic>? metadata,
-    String? roomId,
-    Status? status,
-    int? updatedAt,
-  }) : super(
+  String? text;
+
+  StartMessage(
+      {required User author,
+      int? createdAt,
+      required String id,
+      Map<String, dynamic>? metadata,
+      String? roomId,
+      Status? status,
+      int? updatedAt,
+      String? text})
+      : super(
           author,
           createdAt,
           id,
@@ -29,16 +32,16 @@ class StartMessage extends Message {
         );
 
   /// Creates a full text message from a partial one.
-  StartMessage.fromPartial({
-    required User author,
-    int? createdAt,
-    required String id,
-    Map<String, dynamic>? metadata,
-    String? roomId,
-    Status? status,
-    int? updatedAt,
-  })  : 
-        super(
+  StartMessage.fromPartial(
+      {required User author,
+      int? createdAt,
+      required String id,
+      Map<String, dynamic>? metadata,
+      String? roomId,
+      Status? status,
+      int? updatedAt,
+      String? text})
+      : super(
           author,
           createdAt,
           id,
@@ -51,8 +54,8 @@ class StartMessage extends Message {
 
   /// Creates a text message from a map (decoded JSON).
   StartMessage.fromJson(Map<String, dynamic> json)
-      :
-        super(
+      : text = json['text'] as String?, 
+      super(
           User.fromJson(json['author'] as Map<String, dynamic>),
           json['createdAt'] as int?,
           json['id'] as String,
@@ -72,6 +75,7 @@ class StartMessage extends Message {
         'metadata': metadata,
         'roomId': roomId,
         'status': status?.toShortString(),
+        'text': text,
         'type': MessageType.start.toShortString(),
         'updatedAt': updatedAt,
       };
@@ -83,28 +87,27 @@ class StartMessage extends Message {
   /// [status] with null value will be overwritten by the previous status.
   /// [updatedAt] with null value will nullify existing value.
   @override
-  Message copyWith({
-    Map<String, dynamic>? metadata,
-    PreviewData? previewData,
-    Status? status,
-    String? text,
-    int? updatedAt,
-    String? roomId
-  }) {
+  Message copyWith(
+      {Map<String, dynamic>? metadata,
+      PreviewData? previewData,
+      Status? status,
+      String? text,
+      int? updatedAt,
+      String? roomId}) {
     return StartMessage(
-      author: author,
-      createdAt: createdAt,
-      id: id,
-      metadata: metadata == null
-          ? null
-          : {
-              ...this.metadata ?? {},
-              ...metadata,
-            },
-      roomId: roomId,
-      status: status ?? this.status,
-      updatedAt: updatedAt,
-    );
+        author: author,
+        createdAt: createdAt,
+        id: id,
+        metadata: metadata == null
+            ? null
+            : {
+                ...this.metadata ?? {},
+                ...metadata,
+              },
+        roomId: roomId,
+        status: status ?? this.status,
+        updatedAt: updatedAt,
+        text: text);
   }
 
   /// Equatable props
