@@ -100,7 +100,10 @@ class VideoMessage extends Message {
         status: status ?? this.status,
         updatedAt: updatedAt,
         uri: uri,
-        thumbUri: thumbUri);
+        thumbUri: thumbUri,
+        roomId: roomId
+        );
+
   }
 
   /// Equatable props
