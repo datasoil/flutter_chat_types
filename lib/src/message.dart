@@ -3,6 +3,7 @@ import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:meta/meta.dart';
 import 'messages/start_message.dart';
 import 'messages/choice_message.dart';
+import 'messages/activate_keyboard_message.dart';
 import 'messages/file_message.dart';
 import 'messages/image_message.dart';
 import 'messages/question_message.dart';
@@ -12,7 +13,7 @@ import 'preview_data.dart' show PreviewData;
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType { file, image, text, video, question, choice, start, media_activation, media_deactivation, fulfillment }
+enum MessageType { file, image, text, video, question, choice, start, media_activation, media_deactivation, fulfillment, keyboard_activation }
 
 /// Extension with one [toShortString] method
 extension MessageTypeToShortString on MessageType {
@@ -74,6 +75,8 @@ abstract class Message extends Equatable {
         return MediaDeactivationMessage.fromJson(json);
       case 'fulfillment':
         return FulfillmentMessage.fromJson(json);
+      case 'keyboard_activation':
+        return ActivateKeyboardMessage.fromJson(json);
       default: 
         throw ArgumentError('Unexpected value for message type');
     }
