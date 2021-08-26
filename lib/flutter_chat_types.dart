@@ -3,6 +3,7 @@ library flutter_chat_types;
 export 'src/choice.dart';
 export 'src/message.dart';
 export 'src/messages/activate_media_message.dart';
+export 'src/messages/activate_keyboard_message.dart';
 export 'src/messages/fulfillment_message.dart';
 export 'src/messages/choice_message.dart';
 export 'src/messages/deactivate_media_message.dart';

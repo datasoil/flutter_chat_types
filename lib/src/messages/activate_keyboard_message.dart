@@ -5,13 +5,13 @@ import '../user.dart' show User;
 import '../util.dart' show getStatusFromString;
 import 'partial_text.dart';
 
-/// A class that represents the message used to close media inputs
+/// A class that represents the message sent by the bot to close the conversation with the client, and send the relut of conversation to the coach
 @immutable
-class MediaDeactivationMessage extends Message {
+class ActivateKeyboardMessage extends Message {
   /// Creates a text message.
   String? text;
 
-  MediaDeactivationMessage(
+  ActivateKeyboardMessage(
       {required User author,
       int? createdAt,
       required String id,
@@ -27,12 +27,12 @@ class MediaDeactivationMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.media_deactivation,
+          MessageType.keyboard_activation,
           updatedAt,
         );
 
   /// Creates a full text message from a partial one.
-  MediaDeactivationMessage.fromPartial(
+  ActivateKeyboardMessage.fromPartial(
       {required User author,
       int? createdAt,
       required String id,
@@ -48,12 +48,12 @@ class MediaDeactivationMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.media_deactivation,
+          MessageType.keyboard_activation,
           updatedAt,
         );
 
   /// Creates a text message from a map (decoded JSON).
-  MediaDeactivationMessage.fromJson(Map<String, dynamic> json)
+  ActivateKeyboardMessage.fromJson(Map<String, dynamic> json)
       : text = json['text'] as String?, 
       super(
           User.fromJson(json['author'] as Map<String, dynamic>),
@@ -62,7 +62,7 @@ class MediaDeactivationMessage extends Message {
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
-          MessageType.media_deactivation,
+          MessageType.keyboard_activation,
           json['updatedAt'] as int?,
         );
 
@@ -76,7 +76,7 @@ class MediaDeactivationMessage extends Message {
         'roomId': roomId,
         'status': status?.toShortString(),
         'text': text,
-        'type': MessageType.media_deactivation.toShortString(),
+        'type': MessageType.keyboard_activation.toShortString(),
         'updatedAt': updatedAt,
       };
 
@@ -94,7 +94,7 @@ class MediaDeactivationMessage extends Message {
       String? text,
       int? updatedAt,
       String? roomId}) {
-    return MediaDeactivationMessage(
+    return ActivateKeyboardMessage(
         author: author,
         createdAt: createdAt,
         id: id,

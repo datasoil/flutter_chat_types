@@ -5,7 +5,7 @@ import '../user.dart' show User;
 import '../util.dart' show getStatusFromString;
 import 'partial_text.dart';
 
-/// A class that represents the first message sent by the app to initialize the conversation.
+/// A class that represents the message used to activate media inputs
 @immutable
 class MediaActivationMessage extends Message {
   /// Creates a text message.

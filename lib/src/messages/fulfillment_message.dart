@@ -5,7 +5,7 @@ import '../user.dart' show User;
 import '../util.dart' show getStatusFromString;
 import 'partial_text.dart';
 
-/// A class that represents the first message sent by the app to initialize the conversation.
+/// A class that represents the message sent by the bot to close the conversation with the client, and send the relut of conversation to the coach
 @immutable
 class FulfillmentMessage extends Message {
   /// Creates a text message.
