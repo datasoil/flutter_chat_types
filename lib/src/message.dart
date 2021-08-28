@@ -107,7 +107,7 @@ abstract class Message extends Equatable {
   final User author;
 
   /// Created message timestamp, in ms
-  final int? createdAt;
+  final DateTime? createdAt;
 
   /// Unique ID of the message
   final String id;
