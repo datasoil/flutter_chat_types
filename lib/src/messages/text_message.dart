@@ -11,7 +11,7 @@ class TextMessage extends Message {
   /// Creates a text message.
   const TextMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     this.previewData,
@@ -33,7 +33,7 @@ class TextMessage extends Message {
   /// Creates a full text message from a partial one.
   TextMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialText partialText,
@@ -61,7 +61,7 @@ class TextMessage extends Message {
         text = json['text'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,

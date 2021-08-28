@@ -11,7 +11,7 @@ class ImageMessage extends Message {
   /// Creates an image message.
   const ImageMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     this.height,
     required String id,
     Map<String, dynamic>? metadata,
@@ -36,7 +36,7 @@ class ImageMessage extends Message {
   /// Creates a full image message from a partial one.
   ImageMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialImage partialImage,
@@ -68,7 +68,7 @@ class ImageMessage extends Message {
         width = json['width']?.toDouble() as double?,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,

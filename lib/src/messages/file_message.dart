@@ -11,7 +11,7 @@ class FileMessage extends Message {
   /// Creates a file message.
   const FileMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     this.mimeType,
@@ -35,7 +35,7 @@ class FileMessage extends Message {
   /// Creates a full file message from a partial one.
   FileMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialFile partialFile,
@@ -65,7 +65,7 @@ class FileMessage extends Message {
         uri = json['uri'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,

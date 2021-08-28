@@ -11,7 +11,7 @@ class ChoiceMessage extends Message {
   /// Creates a choice message.
   const ChoiceMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     String? roomId,
@@ -33,7 +33,7 @@ class ChoiceMessage extends Message {
   /// Creates a full text message from a partial one.
   ChoiceMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialChoice partialChoice,
@@ -59,7 +59,7 @@ class ChoiceMessage extends Message {
         text = json['text'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,

@@ -11,7 +11,7 @@ class VideoMessage extends Message {
   /// Creates an video message.
   const VideoMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required this.length,
     required String id,
     Map<String, dynamic>? metadata,
@@ -27,7 +27,7 @@ class VideoMessage extends Message {
   /// Creates a full video message from a partial one.
   VideoMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialVideo partialVideo,
@@ -49,7 +49,7 @@ class VideoMessage extends Message {
         thumbUri = json['thumbUri'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,

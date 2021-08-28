@@ -12,7 +12,7 @@ class QuestionMessage extends Message {
   /// Creates a question message.
   const QuestionMessage({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     String? roomId,
@@ -34,7 +34,7 @@ class QuestionMessage extends Message {
   /// Creates a full question message from a partial one.
   QuestionMessage.fromPartial({
     required User author,
-    int? createdAt,
+    DateTime? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
     required PartialQuestion partialQuestion,
@@ -62,7 +62,7 @@ class QuestionMessage extends Message {
             .toList(),
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as int?,
+          json['createdAt'] as DateTime?,
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
@@ -104,7 +104,7 @@ class QuestionMessage extends Message {
   }) {
     return QuestionMessage(
       author: author,
-      createdAt: createdAt,
+      createdAt: new DateTime(2017,9,7,17,30),
       id: id,
       metadata: metadata == null
           ? null
