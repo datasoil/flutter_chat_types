@@ -18,7 +18,7 @@ class FulfillmentMessage extends Message {
       Map<String, dynamic>? metadata,
       String? roomId,
       Status? status,
-      int? updatedAt,
+      DateTime?updatedAt,
       String? text})
       : super(
           author,
@@ -39,7 +39,7 @@ class FulfillmentMessage extends Message {
       Map<String, dynamic>? metadata,
       String? roomId,
       Status? status,
-      int? updatedAt,
+      DateTime? updatedAt,
       String? text})
       : super(
           author,
@@ -57,13 +57,13 @@ class FulfillmentMessage extends Message {
       : text = json['text'] as String?, 
       super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.fulfillment,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -92,7 +92,7 @@ class FulfillmentMessage extends Message {
       PreviewData? previewData,
       Status? status,
       String? text,
-      int? updatedAt,
+      DateTime?updatedAt,
       String? roomId}) {
     return FulfillmentMessage(
         author: author,

@@ -19,7 +19,7 @@ class FileMessage extends Message {
     String? roomId,
     required this.size,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
     required this.uri,
   }) : super(
           author,
@@ -41,7 +41,7 @@ class FileMessage extends Message {
     required PartialFile partialFile,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
   })  : mimeType = partialFile.mimeType,
         name = partialFile.name,
         size = partialFile.size,
@@ -65,13 +65,13 @@ class FileMessage extends Message {
         uri = json['uri'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.file,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts a file message to the map representation, encodable to JSON.
@@ -105,7 +105,7 @@ class FileMessage extends Message {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   }) {
     return FileMessage(

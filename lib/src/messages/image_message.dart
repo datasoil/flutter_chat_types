@@ -19,7 +19,7 @@ class ImageMessage extends Message {
     String? roomId,
     required this.size,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
     required this.uri,
     this.width,
   }) : super(
@@ -42,7 +42,7 @@ class ImageMessage extends Message {
     required PartialImage partialImage,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
   })  : height = partialImage.height,
         name = partialImage.name,
         size = partialImage.size,
@@ -68,13 +68,13 @@ class ImageMessage extends Message {
         width = json['width']?.toDouble() as double?,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.image,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts an image message to the map representation, encodable to JSON.
@@ -109,7 +109,7 @@ class ImageMessage extends Message {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId,
     double? height
   }) {

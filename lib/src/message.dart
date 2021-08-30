@@ -96,7 +96,7 @@ abstract class Message extends Equatable {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   });
 
@@ -125,5 +125,5 @@ abstract class Message extends Equatable {
   final MessageType type;
 
   /// Updated message timestamp, in ms
-  final int? updatedAt;
+  final DateTime? updatedAt;
 }

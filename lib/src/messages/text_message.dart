@@ -18,7 +18,7 @@ class TextMessage extends Message {
     String? roomId,
     Status? status,
     required this.text,
-    int? updatedAt,
+    DateTime? updatedAt,
   }) : super(
           author,
           createdAt,
@@ -39,7 +39,7 @@ class TextMessage extends Message {
     required PartialText partialText,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
   })  : previewData = null,
         text = partialText.text,
         super(
@@ -61,13 +61,13 @@ class TextMessage extends Message {
         text = json['text'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.text,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -97,7 +97,7 @@ class TextMessage extends Message {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   }) {
     return TextMessage(

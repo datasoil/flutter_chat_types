@@ -5,7 +5,6 @@ import '../message.dart';
 import '../user.dart' show User;
 import '../util.dart' show getStatusFromString;
 import 'partial_question.dart';
-
 /// A class that represents question message.
 @immutable
 class QuestionMessage extends Message {
@@ -19,7 +18,7 @@ class QuestionMessage extends Message {
     Status? status,
     required this.question,
     required this.choices,
-    int? updatedAt,
+    DateTime? updatedAt,
   }) : super(
           author,
           createdAt,
@@ -40,7 +39,7 @@ class QuestionMessage extends Message {
     required PartialQuestion partialQuestion,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
   })  : question = partialQuestion.question,
         choices = partialQuestion.choices,
         super(
@@ -62,13 +61,13 @@ class QuestionMessage extends Message {
             .toList(),
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+           DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.question,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts a question message to the map representation, encodable to JSON.
@@ -99,7 +98,7 @@ class QuestionMessage extends Message {
     Status? status,
     List<Choice>? choices,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   }) {
     return QuestionMessage(

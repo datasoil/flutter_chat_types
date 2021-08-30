@@ -18,7 +18,7 @@ class ChoiceMessage extends Message {
     Status? status,
     required this.key,
     required this.text,
-    int? updatedAt,
+    DateTime?updatedAt,
   }) : super(
           author,
           createdAt,
@@ -39,7 +39,7 @@ class ChoiceMessage extends Message {
     required PartialChoice partialChoice,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime?updatedAt,
   })  : key = partialChoice.key,
         text = partialChoice.text,
         super(
@@ -59,13 +59,13 @@ class ChoiceMessage extends Message {
         text = json['text'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.choice,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -95,7 +95,7 @@ class ChoiceMessage extends Message {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   }) {
     return ChoiceMessage(

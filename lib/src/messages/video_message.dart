@@ -18,7 +18,7 @@ class VideoMessage extends Message {
     String? roomId,
     this.mimeType,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
     required this.uri,
     required this.thumbUri,
   }) : super(author, createdAt, id, metadata, roomId, status, MessageType.video,
@@ -33,7 +33,7 @@ class VideoMessage extends Message {
     required PartialVideo partialVideo,
     String? roomId,
     Status? status,
-    int? updatedAt,
+    DateTime? updatedAt,
   })  : length = partialVideo.length,
         mimeType = partialVideo.mimeType,
         uri = partialVideo.uri,
@@ -49,13 +49,13 @@ class VideoMessage extends Message {
         thumbUri = json['thumbUri'] as String,
         super(
           User.fromJson(json['author'] as Map<String, dynamic>),
-          json['createdAt'] as DateTime?,
+          DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
           MessageType.video,
-          json['updatedAt'] as int?,
+          DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
   /// Converts an video message to the map representation, encodable to JSON.
@@ -82,7 +82,7 @@ class VideoMessage extends Message {
     PreviewData? previewData,
     Status? status,
     String? text,
-    int? updatedAt,
+    DateTime? updatedAt,
     String? roomId
   }) {
     return VideoMessage(
