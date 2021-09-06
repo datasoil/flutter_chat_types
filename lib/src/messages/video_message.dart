@@ -127,7 +127,7 @@ class VideoMessage extends Message {
   final String? mimeType;
 
   /// The video source (either a remote URL or a local resource)
-  final String uri;
+  final String? uri;
 
   /// The preview video source (either a remote URL or a local resource)
   final String thumbUri;
