@@ -7,11 +7,11 @@ import 'partial_text.dart';
 
 /// A class that represents the first message sent by the app to initialize the conversation.
 @immutable
-class StartMessage extends Message {
+class FinishMessage extends Message {
   /// Creates a text message.
   String? text;
 
-  StartMessage(
+  FinishMessage(
       {required User author,
       DateTime? createdAt,
       required String id,
@@ -27,12 +27,12 @@ class StartMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.start,
+          MessageType.finish,
           updatedAt,
         );
 
   /// Creates a full text message from a partial one.
-  StartMessage.fromPartial(
+  FinishMessage.fromPartial(
       {required User author,
       DateTime? createdAt,
       required String id,
@@ -48,12 +48,12 @@ class StartMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.start,
+          MessageType.finish,
           updatedAt,
         );
 
   /// Creates a text message from a map (decoded JSON).
-  StartMessage.fromJson(Map<String, dynamic> json)
+  FinishMessage.fromJson(Map<String, dynamic> json)
       : text = json['text'] as String?, 
       super(
           User.fromJson(json['author'] as Map<String, dynamic>),
@@ -62,7 +62,7 @@ class StartMessage extends Message {
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
-          MessageType.start,
+          MessageType.finish,
           DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
@@ -76,7 +76,7 @@ class StartMessage extends Message {
         'roomId': roomId,
         'status': status?.toShortString(),
         'text': text,
-        'type': MessageType.start.toShortString(),
+        'type': MessageType.finish.toShortString(),
         'updatedAt': updatedAt,
       };
 
@@ -94,7 +94,7 @@ class StartMessage extends Message {
       String? text,
       DateTime? updatedAt,
       String? roomId}) {
-    return StartMessage(
+    return FinishMessage(
         author: author,
         createdAt: createdAt,
         id: id,
