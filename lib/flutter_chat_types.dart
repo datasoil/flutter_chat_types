@@ -19,6 +19,7 @@ export 'src/messages/question_message.dart';
 export 'src/messages/start_message.dart';
 export 'src/messages/text_message.dart';
 export 'src/messages/video_message.dart';
+export 'src/messages/finish_message.dart';
 export 'src/preview_data.dart';
 export 'src/room.dart';
 export 'src/user.dart';
