@@ -7,11 +7,11 @@ import 'partial_text.dart';
 
 /// A class that represents the first message sent by the app to initialize the conversation.
 @immutable
-class FinishMessage extends Message {
+class CancelMessage extends Message {
   /// Creates a text message.
   String? text;
 
-  FinishMessage(
+  CancelMessage(
       {required User author,
       DateTime? createdAt,
       required String id,
@@ -27,12 +27,12 @@ class FinishMessage extends Message {
           metadata,
           roomId,
           status,
-          MessageType.finish,
+          MessageType.cancel,
           updatedAt,
         );
 
   /// Creates a full text message from a partial one.
-  FinishMessage.fromPartial(
+  CancelMessage.fromPartial(
       {required User author,
       DateTime? createdAt,
       required String id,
@@ -40,29 +40,30 @@ class FinishMessage extends Message {
       String? roomId,
       Status? status,
       DateTime? updatedAt,
-      String? text}) 
-      : text = text, super(
+      String? text})
+      : text = text,
+        super(
           author,
           createdAt,
           id,
           metadata,
           roomId,
           status,
-          MessageType.finish,
+          MessageType.cancel,
           updatedAt,
         );
 
   /// Creates a text message from a map (decoded JSON).
-  FinishMessage.fromJson(Map<String, dynamic> json)
-      : text = json['text'] as String?, 
-      super(
+  CancelMessage.fromJson(Map<String, dynamic> json)
+      : text = json['text'] as String?,
+        super(
           User.fromJson(json['author'] as Map<String, dynamic>),
           DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int),
           json['id'] as String,
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
-          MessageType.finish,
+          MessageType.cancel,
           DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
@@ -76,7 +77,7 @@ class FinishMessage extends Message {
         'roomId': roomId,
         'status': status?.toShortString(),
         'text': text,
-        'type': MessageType.finish.toShortString(),
+        'type': MessageType.cancel.toShortString(),
         'updatedAt': updatedAt,
       };
 
@@ -94,7 +95,7 @@ class FinishMessage extends Message {
       String? text,
       DateTime? updatedAt,
       String? roomId}) {
-    return FinishMessage(
+    return CancelMessage(
         author: author,
         createdAt: createdAt,
         id: id,

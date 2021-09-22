@@ -14,7 +14,20 @@ import 'preview_data.dart' show PreviewData;
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType { file, image, text, video, question, choice, start, media_activation, media_deactivation, fulfillment, keyboard_activation, finish }
+enum MessageType {
+  file,
+  image,
+  text,
+  video,
+  question,
+  choice,
+  start,
+  media_activation,
+  media_deactivation,
+  fulfillment,
+  keyboard_activation,
+  cancel
+}
 
 /// Extension with one [toShortString] method
 extension MessageTypeToShortString on MessageType {
@@ -72,15 +85,15 @@ abstract class Message extends Equatable {
         return StartMessage.fromJson(json);
       case 'media_activation':
         return MediaActivationMessage.fromJson(json);
-      case 'media_deactivation': 
+      case 'media_deactivation':
         return MediaDeactivationMessage.fromJson(json);
       case 'fulfillment':
         return FulfillmentMessage.fromJson(json);
       case 'keyboard_activation':
         return ActivateKeyboardMessage.fromJson(json);
-      case 'finish':
-        return FinishMessage.fromJson(json);
-      default: 
+      case 'cancel':
+        return CancelMessage.fromJson(json);
+      default:
         throw ArgumentError('Unexpected value for message type');
     }
   }
@@ -94,14 +107,13 @@ abstract class Message extends Equatable {
   /// [text] will be only set for the text message type. Null value will be
   /// overwritten by the previous text (can't be empty).
   /// [updatedAt] with null value will nullify existing value.
-  Message copyWith({
-    Map<String, dynamic>? metadata,
-    PreviewData? previewData,
-    Status? status,
-    String? text,
-    DateTime? updatedAt,
-    String? roomId
-  });
+  Message copyWith(
+      {Map<String, dynamic>? metadata,
+      PreviewData? previewData,
+      Status? status,
+      String? text,
+      DateTime? updatedAt,
+      String? roomId});
 
   /// Converts a particular message to the map representation, encodable to JSON.
   Map<String, dynamic> toJson();
