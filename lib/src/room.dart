@@ -15,6 +15,17 @@ extension RoomTypeToShortString on RoomType {
   }
 }
 
+///Possible room states
+enum RoomStatus { completed }
+
+/// Extension with one [toShortString] method
+extension RoomStatusToShortString on RoomStatus {
+  /// Converts enum to the string equal to enum's name
+  String toShortString() {
+    return toString().split('.').last;
+  }
+}
+
 /// A class that represents a room where 2 or more participants can chat
 @immutable
 class Room extends Equatable {
@@ -29,6 +40,7 @@ class Room extends Equatable {
     required this.type,
     this.updatedAt,
     required this.users,
+    this.status,
   });
 
   /// Creates room from a map (decoded JSON).
@@ -45,7 +57,8 @@ class Room extends Equatable {
         updatedAt = json['updatedAt'] as int?,
         users = (json['users'] as List<Map<String, dynamic>>)
             .map((e) => User.fromJson(e))
-            .toList();
+            .toList(),
+        status = getRoomStatusFromString(json['status'] as String?);
 
   /// Converts room to the map representation, encodable to JSON.
   Map<String, dynamic> toJson() => {
@@ -58,6 +71,7 @@ class Room extends Equatable {
         'type': type.toShortString(),
         'updatedAt': updatedAt,
         'users': users.map((e) => e.toJson()).toList(),
+        'status': status,
       };
 
   /// Creates a copy of the room with an updated data.
@@ -73,6 +87,7 @@ class Room extends Equatable {
     RoomType? type,
     int? updatedAt,
     List<User>? users,
+    RoomStatus? status,
   }) {
     return Room(
       id: id,
@@ -88,6 +103,7 @@ class Room extends Equatable {
       type: type ?? this.type,
       updatedAt: updatedAt,
       users: users ?? this.users,
+      status: status ?? this.status,
     );
   }
 
@@ -102,7 +118,8 @@ class Room extends Equatable {
         name,
         type,
         updatedAt,
-        users
+        users,
+        status,
       ];
 
   /// Created room timestamp, in ms
@@ -133,4 +150,7 @@ class Room extends Equatable {
 
   /// List of users which are in the room
   final List<User> users;
+
+  //Indicates the room's status
+  final RoomStatus? status;
 }

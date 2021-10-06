@@ -1,5 +1,6 @@
 import 'message.dart' show Status;
 import 'room.dart' show RoomType;
+import 'room.dart' show RoomStatus;
 import 'user.dart' show Role;
 
 /// Converts [stringStatus] to the [Status] enum.
@@ -33,4 +34,15 @@ RoomType getRoomTypeFromString(String stringRoomType) {
   }
 
   return RoomType.unsupported;
+}
+
+RoomStatus? getRoomStatusFromString(String? roomStatus) {
+  if (roomStatus == null) return null;
+  for (final roomType in RoomStatus.values) {
+    if (roomType.toString() == 'RoomType.$roomStatus') {
+      return roomType;
+    }
+  }
+
+  return null;
 }
