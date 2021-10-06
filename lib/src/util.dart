@@ -36,11 +36,11 @@ RoomType getRoomTypeFromString(String stringRoomType) {
   return RoomType.unsupported;
 }
 
-RoomStatus? getRoomStatusFromString(String? roomStatus) {
-  if (roomStatus == null) return null;
-  for (final roomType in RoomStatus.values) {
-    if (roomType.toString() == 'RoomType.$roomStatus') {
-      return roomType;
+RoomStatus? getRoomStatusFromString(String? stringRoomStatus) {
+  if (stringRoomStatus == null) return null;
+  for (final roomStatus in RoomStatus.values) {
+    if (roomStatus.toString() == 'RoomStatus.$stringRoomStatus') {
+      return roomStatus;
     }
   }
 
