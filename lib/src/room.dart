@@ -16,7 +16,7 @@ extension RoomTypeToShortString on RoomType {
 }
 
 ///Possible room states
-enum RoomStatus { completed }
+enum RoomStatus { complete }
 
 /// Extension with one [toShortString] method
 extension RoomStatusToShortString on RoomStatus {
