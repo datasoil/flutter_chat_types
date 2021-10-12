@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:flutter_chat_types/src/messages/finish_message.dart';
+import 'package:flutter_chat_types/src/messages/fulfillment_coach_message.dart';
 import 'package:flutter_chat_types/src/messages/fulfillment_waiting_coach_message.dart';
 import 'package:meta/meta.dart';
 import 'messages/start_message.dart';
@@ -28,7 +29,8 @@ enum MessageType {
   fulfillment,
   keyboard_activation,
   cancel,
-  fulfillment_waiting_coach
+  fulfillment_waiting_coach,
+  coach_fulfillment
 }
 
 /// Extension with one [toShortString] method
@@ -97,6 +99,8 @@ abstract class Message extends Equatable {
         return CancelMessage.fromJson(json);
       case 'fulfillment_waiting_coach':
         return FulFilmentWaitingCoach.fromJson(json);
+      case 'coach_fulfillment':
+        return FulFilmentCoach.fromJson(json);
       default:
         throw ArgumentError('Unexpected value for message type');
     }

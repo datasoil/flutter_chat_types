@@ -8,6 +8,7 @@ export 'src/messages/choice_message.dart';
 export 'src/messages/deactivate_media_message.dart';
 export 'src/messages/file_message.dart';
 export 'src/messages/finish_message.dart';
+export 'src/messages/fulfillment_coach_message.dart';
 export 'src/messages/fulfillment_message.dart';
 export 'src/messages/fulfillment_waiting_coach_message.dart';
 export 'src/messages/image_message.dart';
