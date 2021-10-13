@@ -41,7 +41,8 @@ class FulFilmentCoach extends Message {
       Status? status,
       DateTime? updatedAt,
       String? text})
-      : super(
+      : text = text,
+        super(
           author,
           createdAt,
           id,
