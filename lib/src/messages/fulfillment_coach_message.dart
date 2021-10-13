@@ -62,7 +62,7 @@ class FulFilmentCoach extends Message {
           json['metadata'] as Map<String, dynamic>?,
           json['roomId'] as String?,
           getStatusFromString(json['status'] as String?),
-          MessageType.fulfillment_waiting_coach,
+          MessageType.coach_fulfillment,
           DateTime.fromMillisecondsSinceEpoch(json['updatedAt'] as int),
         );
 
