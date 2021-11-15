@@ -11,6 +11,8 @@ class VideoMessage extends Message {
   /// Creates an video message.
   const VideoMessage({
     required User author,
+    this.height,
+    this.width,
     DateTime? createdAt,
     required this.length,
     required String id,
@@ -34,7 +36,9 @@ class VideoMessage extends Message {
     String? roomId,
     Status? status,
     DateTime? updatedAt,
-  })  : length = partialVideo.length,
+  })  : height = partialVideo.height,
+        length = partialVideo.length,
+        width = partialVideo.width,
         mimeType = partialVideo.mimeType,
         uri = partialVideo.uri,
         thumbUri = partialVideo.thumbUri,
@@ -43,8 +47,10 @@ class VideoMessage extends Message {
 
   /// Creates an video message from a map (decoded JSON).
   VideoMessage.fromJson(Map<String, dynamic> json)
-      : length = Duration(milliseconds: json['length'] as int),
+      : height = json['height']?.toDouble() as double?,
+        length = Duration(milliseconds: json['length'] as int),
         mimeType = json['mimeType'] as String?,
+        width = json['width']?.toDouble() as double?,
         uri = json['uri'] as String,
         thumbUri = json['thumbUri'] as String,
         super(
@@ -64,6 +70,7 @@ class VideoMessage extends Message {
         'author': author.toJson(),
         'createdAt': createdAt,
         'id': id,
+        'height': height,
         'metadata': metadata,
         'roomId': roomId,
         'length': length.inMilliseconds,
@@ -73,21 +80,23 @@ class VideoMessage extends Message {
         'updatedAt': updatedAt,
         'uri': uri,
         'thumbUri': thumbUri,
+        'width': width,
       };
 
   /// Creates a copy of the video message with an updated data
   @override
-  Message copyWith({
-    Map<String, dynamic>? metadata,
-    PreviewData? previewData,
-    Status? status,
-    String? text,
-    DateTime? updatedAt,
-    String? roomId
-  }) {
+  Message copyWith(
+      {Map<String, dynamic>? metadata,
+      PreviewData? previewData,
+      Status? status,
+      double? height,
+      String? text,
+      DateTime? updatedAt,
+      String? roomId}) {
     return VideoMessage(
         author: author,
         createdAt: createdAt,
+        height: height,
         length: length,
         id: id,
         metadata: metadata == null
@@ -101,9 +110,8 @@ class VideoMessage extends Message {
         updatedAt: updatedAt,
         uri: uri,
         thumbUri: thumbUri,
-        roomId: roomId
-        );
-
+        roomId: roomId,
+        width: width);
   }
 
   /// Equatable props
@@ -111,6 +119,8 @@ class VideoMessage extends Message {
   List<Object?> get props => [
         author,
         length,
+        width,
+        height,
         id,
         metadata,
         mimeType,
@@ -119,6 +129,9 @@ class VideoMessage extends Message {
         uri,
         thumbUri
       ];
+
+  /// Image height in pixels
+  final double? height;
 
   /// The length of the video
   final Duration length;
@@ -131,4 +144,7 @@ class VideoMessage extends Message {
 
   /// The preview video source (either a remote URL or a local resource)
   final String thumbUri;
+
+  /// Image width in pixels
+  final double? width;
 }
